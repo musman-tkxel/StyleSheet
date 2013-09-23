@@ -1,6 +1,7 @@
 StyleSheet::Application.routes.draw do
-  get "stylesheet/home"
-  get "stylesheet/help"
+  get "users/new"
+  #get "stylesheet/home"
+  #get "stylesheet/help"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -9,7 +10,14 @@ StyleSheet::Application.routes.draw do
   #  root 'stylesheet#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+
+  #root  'stylesheet#home'
+  match 'stylesheet',  to: 'stylesheet#home',      via: 'get'
+  match 'stylesheet/home',  to: 'stylesheet#home',      via: 'get'
+  match 'stylesheet/signup',  to: 'users#new',          via: 'get'
+  match 'stylesheet/help',    to: 'stylesheet#help',    via: 'get'
+  match 'stylesheet/about',   to: 'stylesheet#about',   via: 'get'
+  match 'stylesheet/contact', to: 'stylesheet#contact', via: 'get'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
