@@ -40,6 +40,7 @@ group :development do
 	gem 'rspec-rails', '2.13.1'
 	gem 'bcrypt-ruby', '3.0.1'
 	gem 'factory_girl_rails', '4.2.1'
+	gem 'better_errors'
 end
 
 
