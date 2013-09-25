@@ -39,6 +39,7 @@ group :development do
 	gem 'sqlite3'
 	gem 'rspec-rails', '2.13.1'
 	gem 'bcrypt-ruby', '3.0.1'
+	gem 'factory_girl_rails', '4.2.1'
 end
 
 
