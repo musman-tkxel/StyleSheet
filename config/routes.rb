@@ -1,5 +1,6 @@
 StyleSheet::Application.routes.draw do
-  get "users/new"
+  #get "users/new"
+  resources :users
   #get "stylesheet/home"
   #get "stylesheet/help"
 
@@ -11,13 +12,12 @@ StyleSheet::Application.routes.draw do
 
   # Example of regular route:
 
-  #root  'stylesheet#home'
-  match 'stylesheet',  to: 'stylesheet#home',      via: 'get'
-  match 'stylesheet/home',  to: 'stylesheet#home',      via: 'get'
-  match 'stylesheet/signup',  to: 'users#new',          via: 'get'
-  match 'stylesheet/help',    to: 'stylesheet#help',    via: 'get'
-  match 'stylesheet/about',   to: 'stylesheet#about',   via: 'get'
-  match 'stylesheet/contact', to: 'stylesheet#contact', via: 'get'
+  root  'stylesheet#home'  
+  match '/home',  to: 'stylesheet#home',      via: 'get'
+  match '/signup',  to: 'users#new',          via: 'get'
+  match '/help',    to: 'stylesheet#help',    via: 'get'
+  match '/about',   to: 'stylesheet#about',   via: 'get'
+  match '/contact', to: 'stylesheet#contact', via: 'get'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
