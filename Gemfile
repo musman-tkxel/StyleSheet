@@ -32,7 +32,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :production do    
+group :production do
+  gem 'rails_12factor', '0.0.2'
 end
 
 group :development do
