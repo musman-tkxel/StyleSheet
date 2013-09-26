@@ -3,9 +3,7 @@ require 'spec_helper'
 describe "User pages" do
 
   subject { page }
-  .
-  .
-  .
+
   describe "signup" do
 
     before { visit signup_path }
