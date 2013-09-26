@@ -35,13 +35,7 @@ group :doc do
 end
 
 group :production do
-  gem 'rails_12factor', '0.0.2'
-  gem 'rspec-rails', '2.13.1'
-  gem 'bcrypt-ruby', '3.0.1'
-  gem 'factory_girl_rails', '4.2.1'
-  gem 'better_errors'
-  gem 'taps'
-  gem 'rvm'
+
   gem 'pg', '0.15.1'
 end
 
@@ -49,6 +43,13 @@ group :development do
 	gem 'sqlite3'
 end
 
+gem 'rails_12factor', '0.0.2'
+gem 'rspec-rails', '2.13.1'
+gem 'bcrypt-ruby', '3.0.1'
+gem 'factory_girl_rails', '4.2.1'
+gem 'better_errors'
+gem 'taps'
+gem 'rvm'
 
 
 # Use ActiveModel has_secure_password
