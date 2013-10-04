@@ -27,24 +27,26 @@ describe "User pages" do
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
-    end
+      describe "after saving the user" do
+        before { click_button submit }
+        let(:user) { User.find_by(email: 'user@example.com') }
 
-    describe "after saving the user" do
-      before { click_button submit }
-      let(:user) { User.find_by(email: 'user@example.com') }
-
-      it { should have_link('Sign out') }
-      it { should have_title(user.name) }
-      it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+       it { should have_link('Sign out') }
+       it { should have_title(user.name) }
+       it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+      end
     end
   end
 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
+    before {sign_in user}
     before { visit edit_user_path(user) }
 
     describe "page" do
-      it { should have_content("Update your profile") }
+      it "should " do
+        should have_content("Update your profile")
+      end
       it { should have_title("Edit user") }
       it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
@@ -99,5 +101,42 @@ describe "User pages" do
         it { should_not have_link('delete', href: user_path(admin)) }
       end
     end
+  end
+
+  describe "profile page" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+
+    before do
+      sign_in user
+      visit user_path(user)
+    end
+
+      it { should have_content(user.name) }
+
+    describe "microposts" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
+  end
+
+  describe "Home page" do
+        describe "for signed-in users" do
+          let(:user) { FactoryGirl.create(:user) }
+          before do
+            FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+            FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+            sign_in user
+            visit root_path
+          end
+
+          it "should render the user's feed" do
+            user.feed.each do |item|
+              expect(page).to have_selector("li##{item.id}", text: item.content)
+            end
+          end
+        end
   end
 end
